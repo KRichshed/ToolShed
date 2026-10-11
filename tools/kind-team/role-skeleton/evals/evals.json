@@ -1,0 +1,80 @@
+{
+  "skill": "{{ROLE}}",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "{{A realistic message a beginner would send, with the material to review pasted in. Use made-up material only, never a real project.}}",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Shows at most three findings in full and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Says what it did not check",
+        "{{Two or three checks specific to this role}}"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "{{A request that needs something the role can't reach, such as a link it can't open.}}",
+      "expect": [
+        "Says in the first lines what it can't do",
+        "Does not invent findings",
+        "Names what that leaves unchecked",
+        "Gives a short check the person can do themselves"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the {{ROLE}} skill. Hand-off pack. Ticket: {{ticket}}.\nFiles: {{material}}. Done means: {{measurable done}}. Don't touch: anything outside the material.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check",
+        "Every finding has a severity and a label",
+        "Stays inside the pack"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the {{ROLE}} skill. Hand-off pack. Ticket: {{ticket}}.\nFiles: {{material}}. Don't touch: anything outside the material.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the {{ROLE}} skill. Just tell me {{a small yes or no question in this area}}. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer without nagging",
+        "States the reason in one line",
+        "Does not ask more than one question"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "{{Plain phrase 1 a beginner would type for this role}}",
+      "{{Plain phrase 2 a beginner would type for this role}}",
+      "{{Plain phrase 3 a beginner would type for this role}}",
+      "{{Plain phrase 4 a beginner would type for this role}}",
+      "{{Plain phrase 5 a beginner would type for this role}}"
+    ],
+    "should_not_trigger": [
+      "{{Prompt 1 that belongs to another role or to nobody, include the nearest neighbours}}",
+      "{{Prompt 2 that belongs to another role or to nobody, include the nearest neighbours}}",
+      "{{Prompt 3 that belongs to another role or to nobody, include the nearest neighbours}}",
+      "{{Prompt 4 that belongs to another role or to nobody, include the nearest neighbours}}",
+      "{{Prompt 5 that belongs to another role or to nobody, include the nearest neighbours}}"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

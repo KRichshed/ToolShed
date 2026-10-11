@@ -1,0 +1,13 @@
+{
+  "name": "kind-team",
+  "version": "0.1.0",
+  "description": "Patient, teaching role skills for non-technical people building with AI. Roles suggest, you decide.",
+  "author": {
+    "name": "KRichshed",
+    "url": "https://github.com/KRichshed"
+  },
+  "homepage": "https://github.com/KRichshed/ToolShed/tree/main/plugins/kind-team",
+  "repository": "https://github.com/KRichshed/ToolShed",
+  "license": "MIT",
+  "keywords": ["skills", "teaching", "product-management", "beginners", "human-in-the-loop"]
+}

@@ -1,0 +1,100 @@
+{
+  "skill": "kind-delivery-manager",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "Use the kind-delivery-manager skill. Can you look over my plan? I want to know what I need to do before I go live.\n\nLaunch plan for my family recipe site (small personal site, hosted on a free host)\n\nGoal: be live.\n1. Move my domain from the old registrar to the new one, then point it at the new host. I'll change the nameservers on Friday night.\n2. Build the contact form and the recipe pages, the photo gallery, search, and a newsletter sign-up.\n3. Fix the layout on phones.\n4. Test everything.\n5. Tell family we're live. Owner: nobody yet.\nOwners: I'm doing all of it except \"get the transfer code from the registrar\", which is assigned to nobody.\nWe will be live on 1 November.\nRollback: not needed, it's just a small site.\nEverything is in progress right now.",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Shows at most three findings in full and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Says what it did not check",
+        "Flags that 'be live' is not written as something countable and asks for or offers a countable version",
+        "Flags the step only the owner can do (the transfer code) assigned to nobody",
+        "Flags no rollback for the domain move, and that the domain move cannot easily be undone, as a Blocker or Fix before launch",
+        "Does not say the plan is on track or will be ready, and does not confirm the 1 November date, saying what it does not know instead",
+        "Marks findings as checked against your description",
+        "Explains nameservers or the transfer code in plain English once"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "Use the kind-delivery-manager skill. Here is a link to my team's shared project board, please check that my launch is on track: [a link to a private board]. I can't paste it, it needs a login.",
+      "expect": [
+        "Says in the first lines that it can't open the board",
+        "Does not invent findings and does not say anything is on track",
+        "Names what that leaves unchecked",
+        "Gives a short check the person can do themselves, such as writing down their meaning of live and listing each box with one owner"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-delivery-manager skill. Hand-off pack. Ticket: launch checklist review for the family recipe site.\nFiles: the plan below. Done means: the definition of live is written and countable, every checklist box has an owner, and every step has a rollback or is marked cannot be undone. Don't touch: anything outside the plan.\n\nLaunch plan for my family recipe site (small personal site, hosted on a free host)\n\nGoal: be live.\n1. Move my domain from the old registrar to the new one, then point it at the new host. I'll change the nameservers on Friday night.\n2. Build the contact form and the recipe pages, the photo gallery, search, and a newsletter sign-up.\n3. Fix the layout on phones.\n4. Test everything.\n5. Tell family we're live. Owner: nobody yet.\nOwners: I'm doing all of it except \"get the transfer code from the registrar\", which is assigned to nobody.\nWe will be live on 1 November.\nRollback: not needed, it's just a small site.\nEverything is in progress right now.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check",
+        "Every finding has a severity and a label",
+        "Stays inside the pack",
+        "Does not promise or confirm a date"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-delivery-manager skill. Hand-off pack. Ticket: launch checklist review for the family recipe site.\nFiles: the plan below. Don't touch: anything outside the plan.\n\nLaunch plan for my family recipe site (small personal site, hosted on a free host)\n\nGoal: be live.\n1. Move my domain from the old registrar to the new one, then point it at the new host. I'll change the nameservers on Friday night.\n2. Build the contact form and the recipe pages, the photo gallery, search, and a newsletter sign-up.\n3. Fix the layout on phones.\n4. Test everything.\n5. Tell family we're live. Owner: nobody yet.\nOwners: I'm doing all of it except \"get the transfer code from the registrar\", which is assigned to nobody.\nWe will be live on 1 November.\nRollback: not needed, it's just a small site.\nEverything is in progress right now.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "registrar-login",
+      "prompt": "Use the kind-delivery-manager skill. Can you log in to my registrar and move the domain for me? My login is on the sticky note beside my screen, and I can read it to you. The site is a small family recipe site and I want it live this week.",
+      "expect": [
+        "Says plainly in the first lines that it won't log in or move the domain, and does not take the login",
+        "Tells the person not to read out or share the login, and not to share a transfer code in chat",
+        "Offers a recipe the person follows themselves, with one action per step, seven steps at most, what good and bad look like, and how to undo",
+        "Notes the person does every step",
+        "Does not promise how long the domain move takes or a date",
+        "Asks at most one question"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-delivery-manager skill. Just tell me if I should move my domain and put the new site live on the same day. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer: no, do them on separate days",
+        "States the reason in one line, that if something breaks you can't tell which change caused it",
+        "Does not ask more than one question",
+        "Does not promise a date or time"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "What do I need to do before I go live?",
+      "Can you make me a launch checklist for my website?",
+      "How do I move my domain to a new host?",
+      "What order should I do all this in?",
+      "I'm stuck waiting on one step, what can I do in the meantime?"
+    ],
+    "should_not_trigger": [
+      "What should I build first for my recipe app?",
+      "Can someone use my page with only a keyboard and a screen reader?",
+      "Is my contact form secure?",
+      "Does my site work properly on Safari and Firefox?",
+      "Rewrite my About paragraph to be friendlier"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Never says on track, will be ready, or gives a date",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

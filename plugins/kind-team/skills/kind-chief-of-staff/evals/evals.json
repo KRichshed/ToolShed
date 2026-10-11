@@ -1,0 +1,111 @@
+{
+  "skill": "kind-chief-of-staff",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "designer-portfolio",
+      "prompt": "I'm a designer building a portfolio. I'm new to all this AI stuff, where do I start?",
+      "follow_ups": [
+        "A portfolio site with my case studies",
+        "Mostly hiring managers at design agencies, because I want interviews",
+        "A side project over a couple of weekends",
+        "I have notes and some old case study slides",
+        "Design confident, writing some, code new, the others new",
+        "Claude in the browser, and I just got Claude Code",
+        "Australia",
+        "I get tired in the evenings, keep it short please"
+      ],
+      "expect": [
+        "Asks one question at a time and shows progress",
+        "Says once that questions can be skipped",
+        "Ends with a project card that includes size and region",
+        "Starting crew has at most three roles, with a teaching level for each",
+        "Teaching levels follow the familiarity answers (design: Check me, code: Show me)",
+        "Roles that aren't installed are marked as not installed yet",
+        "Honours 'keep it short' in the final reply",
+        "Ends with exactly one next step"
+      ]
+    },
+    {
+      "id": "skip-everything",
+      "prompt": "I want to start a project with the kind team",
+      "follow_ups": [
+        "skip",
+        "skip",
+        "skip",
+        "skip",
+        "skip",
+        "skip",
+        "skip",
+        "skip"
+      ],
+      "expect": [
+        "Moves on after each skip without comment",
+        "Still gives a project card",
+        "Proposes a minimal crew",
+        "Says plainly what it assumed"
+      ]
+    },
+    {
+      "id": "just-set-me-up",
+      "prompt": "Just set me up, I don't want a quiz. It's a recipe app for my family.",
+      "expect": [
+        "Treats it as a request for a project card, not a request to build the app",
+        "Writes no code and starts no project",
+        "Gives a project card in the same reply, with labelled assumptions",
+        "No more than three roles in the crew"
+      ]
+    },
+    {
+      "id": "roster-aware",
+      "prompt": "I'm launching a small club website next week and I'm worried about the form on it. Who on the kind team should help, and in what order?",
+      "expect": [
+        "Proposes at most three roles with a one-line reason each",
+        "Names only roles it can see are installed, and marks any other as not installed yet",
+        "Waits for a yes before starting any role",
+        "Hands over one role at a time, not several back to back"
+      ]
+    },
+    {
+      "id": "no-matching-role",
+      "prompt": "I need someone to negotiate my rent with my landlord. Which kind team role does that?",
+      "expect": [
+        "Says plainly that no role covers this",
+        "Does not pretend a role fits",
+        "Offers the nearest thing it can do, in one line",
+        "Does not ask more than one question"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-chief-of-staff skill. Hand-off pack. Ticket: pick the starting crew for my club website.\nFiles to read: my notes are pasted below.\nNotes: it is a small site for a pottery club, about ten pages, I have the text but no design.\nDon't touch: anything outside these notes.",
+      "expect": [
+        "Does no crew selection yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "I'm new to building with AI and don't know where to start",
+      "Which of the kind team roles should I use for my project?",
+      "Help me set up my new project with the right helpers",
+      "I finished my first version, what's next?",
+      "There are too many skills, I'm overwhelmed, who do I talk to?"
+    ],
+    "should_not_trigger": [
+      "What's the MVP for a habit tracker?",
+      "Write acceptance criteria for a password reset form",
+      "Check this page for colour contrast problems",
+      "Fix the bug in my login function",
+      "Rewrite this About paragraph to be friendlier"
+    ]
+  },
+  "teaching_checks": [
+    "One question at a time",
+    "Every question skippable",
+    "Has a one-line why",
+    "Ends with one next step",
+    "Offers to save the card and a learning-log line"
+  ]
+}

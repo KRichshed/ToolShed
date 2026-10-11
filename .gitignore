@@ -1,0 +1,17 @@
+# Mac clutter
+.DS_Store
+
+# Secrets: never commit keys or tokens
+.env
+.env.*
+*.key
+*.pem
+secrets/
+
+# Editor files
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc

@@ -1,0 +1,15 @@
+{
+  "name": "toolshed",
+  "description": "Skills, agents and prompts from ToolShed, bundled so you can install them in one step.",
+  "owner": {
+    "name": "KRichshed",
+    "url": "https://github.com/KRichshed"
+  },
+  "plugins": [
+    {
+      "name": "kind-team",
+      "source": "./plugins/kind-team",
+      "description": "Patient, teaching role skills for non-technical people building with AI. Roles suggest, you decide."
+    }
+  ]
+}
