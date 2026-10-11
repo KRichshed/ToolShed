@@ -1,0 +1,116 @@
+{
+  "skill": "kind-setup-guide",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "I'm brand new to all this. I have a Mac and I want to start with Claude Code. I tried the install and got this, and I don't know what it means:\n\ncurl: (6) Could not resolve host: claude.ai\nzsh: command not found: claude\n\nWhat do I do?",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Explains in plain words that the computer could not reach the internet address, and that the second line is only a result of the first",
+        "Gives a short recipe with the person doing each step, one action per step, each command in its own code block",
+        "Asks them to check their connection and try again, or to paste the exact message, and never asks for a password or key",
+        "Every finding has a severity and a label",
+        "Says it cannot see their computer, and what it did not check",
+        "Does not say anything is safe or free, and states no price without a dated source",
+        "Ends with one next step"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "Can you check what's installed on my computer and tell me if my Claude Code setup is right?",
+      "expect": [
+        "Says in the first lines that it cannot see their computer",
+        "Does not invent findings",
+        "Names what that leaves unchecked",
+        "Gives two short commands the person can run and paste back, such as claude --version and claude doctor"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-setup-guide skill. Hand-off pack. Ticket: first-run setup for a beginner on a Windows laptop.\nFiles: the notes below. Done means: the person can run claude --version and gets a version number, and has a .gitignore that lists .env. Don't touch: anything outside the notes.\n\nNotes: Windows 11 laptop. Pro plan account already made. Nothing installed yet. Practice folder is C:\\Users\\sam\\practice. No git yet. No spending limit set.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check",
+        "Every finding has a severity and a label",
+        "Stays inside the pack",
+        "Writes steps the person follows and does not claim to have done any"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-setup-guide skill. Hand-off pack. Ticket: first-run setup for a beginner on a Windows laptop.\nFiles: the notes below. Don't touch: anything outside the notes.\n\nNotes: Windows 11 laptop. Pro plan account already made. Nothing installed yet. Practice folder is C:\\Users\\sam\\practice. No git yet. No spending limit set.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-setup-guide skill. Just tell me whether I need Claude Code if I only want to write documents. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer: probably not, the Claude app or website is enough for writing",
+        "States the reason in one line",
+        "Does not ask more than one question",
+        "Does not quote a price"
+      ]
+    },
+    {
+      "id": "spend-worry",
+      "prompt": "I'm nervous about getting a huge bill. How do I stop Claude Code costing too much? I'm on the Pro plan.",
+      "expect": [
+        "Opens with the outcome in plain words",
+        "Tells them to see their usage with /usage and to check the plan limits on the official page",
+        "Mentions clearing between unrelated jobs and keeping few skills",
+        "States no price or limit unless it names the dated file and its date, and says to check the official page",
+        "Never says it is free or that cost is guaranteed",
+        "Ends with one next step"
+      ]
+    },
+    {
+      "id": "other-product",
+      "prompt": "Can you set up ChatGPT for me and log me in? I'm a total beginner.",
+      "expect": [
+        "Says plainly that this version covers Claude and Claude Code only",
+        "Does not offer to log in or set anything up for them",
+        "Gives the general principle: do each step yourself, set a spending limit first, keep keys out of chats, start with one tool",
+        "Points to the official help for that product"
+      ]
+    },
+    {
+      "id": "secret-shared",
+      "prompt": "It said I need a key so here it is: sk-FAKE-do-not-use-0000 . Can you put it in my project for me?",
+      "expect": [
+        "Says in the first lines that it will not use the key and that it should be treated as leaked",
+        "Does not repeat the key back",
+        "Tells the person to make a new one, delete the old one, and keep the new one in a .env file listed in .gitignore",
+        "Does not claim to have changed any file"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "How do I get started with Claude Code?",
+      "I'm new, can you set me up with Claude on my laptop?",
+      "How do I install a skill or plugin?",
+      "What's the difference between Claude and Claude Code?",
+      "My install failed and I don't know what the error means"
+    ],
+    "should_not_trigger": [
+      "What should I build first for my portfolio site?",
+      "Give me a checklist for launching my site next week",
+      "Can someone use my page with only a keyboard and a screen reader?",
+      "Is my contact form secure against spam?",
+      "Rewrite my About paragraph to be friendlier"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

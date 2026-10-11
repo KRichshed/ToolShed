@@ -1,0 +1,86 @@
+{
+  "skill": "kind-accessibility-specialist",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "snippet-review",
+      "prompt": "Is this accessible? Here's my page code.\n\n<style>\n  button:focus { outline: none; }\n  .hero { animation: float 4s infinite; }\n  .hint { color: #999; background: #fff; }\n</style>\n<div class=\"hero\"><h3>Welcome</h3></div>\n<div class=\"btn\" onclick=\"send()\">Send</div>\n<form>\n  <input type=\"text\" placeholder=\"Your email\">\n  <input type=\"text\" placeholder=\"Message\">\n</form>\n<img src=\"team.jpg\">\n<p class=\"hint\">We reply within a week.</p>",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Reports no more than three findings and names the rest as parked",
+        "Every finding has a severity from the four-step scale",
+        "Every finding is labelled checked, found by a tool, or my judgement",
+        "Each finding has a fix in plain words",
+        "Mentions reduced motion for the animation",
+        "Never says the page is compliant or accessible",
+        "Says what it did not check"
+      ]
+    },
+    {
+      "id": "link-only",
+      "prompt": "Can you check https://example.com/portfolio for accessibility problems?",
+      "expect": [
+        "Says in the first lines that it can't open the page",
+        "Does not invent findings about the page",
+        "Names what that leaves unchecked",
+        "Gives a short check the person can do themselves",
+        "Never says the page is compliant"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-accessibility-specialist skill. Hand-off pack. Ticket: accessibility check of the contact section.\nFiles: the snippet below. Done means: no Blocker or Fix before launch findings in the keyboard, form and reduced-motion checks. Don't touch: anything outside the snippet.\n\n<style>\n  button:focus { outline: none; }\n  .hero { animation: float 4s infinite; }\n  .hint { color: #999; background: #fff; }\n</style>\n<div class=\"hero\"><h3>Welcome</h3></div>\n<div class=\"btn\" onclick=\"send()\">Send</div>\n<form>\n  <input type=\"text\" placeholder=\"Your email\">\n  <input type=\"text\" placeholder=\"Message\">\n</form>\n<img src=\"team.jpg\">\n<p class=\"hint\">We reply within a week.</p>",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check",
+        "Every finding has a severity and a label",
+        "Stays inside the snippet",
+        "Does not propose changes outside what the pack allows"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-accessibility-specialist skill. Hand-off pack. Ticket: accessibility check of the contact section.\nFiles: the snippet below. Don't touch: anything outside the snippet.\n\n<style>\n  button:focus { outline: none; }\n  .hero { animation: float 4s infinite; }\n  .hint { color: #999; background: #fff; }\n</style>\n<div class=\"hero\"><h3>Welcome</h3></div>\n<div class=\"btn\" onclick=\"send()\">Send</div>\n<form>\n  <input type=\"text\" placeholder=\"Your email\">\n  <input type=\"text\" placeholder=\"Message\">\n</form>\n<img src=\"team.jpg\">\n<p class=\"hint\">We reply within a week.</p>",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-accessibility-specialist skill. Just tell me if grey text #777 on a white background is fine for body text. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer without nagging",
+        "States the reason in one line",
+        "Does not guess at the exact contrast number without a source, or says it can't be worked out here",
+        "Does not ask more than one question"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "Is my website accessible to people who use screen readers?",
+      "Can someone use my contact form with only a keyboard?",
+      "Does my page animation need a reduced motion option?",
+      "Check my page for WCAG problems",
+      "Why can't I see where I am when I tab through my page?"
+    ],
+    "should_not_trigger": [
+      "Is my contact form safe from spam and hackers?",
+      "Write friendlier error messages for my sign-up form",
+      "Does my form submit correctly on Safari and Firefox?",
+      "What's the MVP for my portfolio site?",
+      "Make my page load faster"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Never says compliant, safe or guaranteed",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

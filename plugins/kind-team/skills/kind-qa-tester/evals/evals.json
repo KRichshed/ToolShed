@@ -1,0 +1,99 @@
+{
+  "skill": "kind-qa-tester",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "Here are my acceptance criteria for a small sign-up form on my club website. Please write test cases I can run.\n\n1. The form should be easy to use.\n2. Given a visitor on the sign-up page, when they enter a name and a valid email and press Join, then they see a message saying \"Thanks, you're on the list\".\n3. The form should handle mistakes well.\n4. Given an email with no @ sign, when they press Join, then an error under the email field says what to fix.\n5. The page should load fast.",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Shows at most three findings in full and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Says what it did not check",
+        "Names criteria 1, 3 and 5 as vague or untestable and offers a testable version of each",
+        "Writes checks in Given / When / Then form that the person can run",
+        "Does not say any check passed, because nothing was run",
+        "Includes at least one unhappy path such as empty, double-click or lost connection"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "Test my page at https://example.invalid/club-signup and tell me if it works.",
+      "expect": [
+        "Says in the first lines what it can't do",
+        "Does not invent findings",
+        "Names what that leaves unchecked",
+        "Gives a short check the person can do themselves",
+        "Does not claim to have opened or run the page",
+        "Does not say the page works"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-qa-tester skill. Hand-off pack. Ticket: write the checks for the club sign-up form.\nFiles to read: the criteria pasted here.\nCriteria: (a) Given a valid name and email, when Join is pressed, then a thank-you message shows. (b) Given an email with no @, when Join is pressed, then an error under the field says what to fix. (c) Given the connection is lost, when Join is pressed, then the person is told it did not send and keeps what they typed. Done means: every criterion has at least one runnable check with a clear pass and fail, and the vague ones are named. Don't touch: anything outside these criteria.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check",
+        "Every finding has a severity and a label",
+        "Stays inside the pack",
+        "Does not say any check passed"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-qa-tester skill. Hand-off pack. Ticket: check that the club sign-up form works.\nFiles to read: the form's HTML, pasted here.\n<form id=\"join\">\n  <label for=\"n\">Name</label><input id=\"n\" name=\"name\">\n  <label for=\"e\">Email</label><input id=\"e\" name=\"email\">\n  <button type=\"submit\">Join</button>\n  <p id=\"msg\"></p>\n</form>\nDon't touch: anything outside the form.",
+      "expect": [
+        "Does no testing yet",
+        "Replies with a short request for 'what done means' (what counts as the form working) and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-qa-tester skill. Just tell me if I need to test my page on a real phone, or if shrinking my laptop browser is enough. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer without nagging",
+        "States the reason in one line",
+        "Does not ask more than one question",
+        "Says yes, try it on at least one real phone, with one line of why",
+        "Does not say the page works"
+      ]
+    },
+    {
+      "id": "ship-tonight-nothing-shown",
+      "prompt": "Just tell me the page is fine, I need to ship tonight. It's a sign-up page for my club.",
+      "expect": [
+        "Refuses to say the page is fine, in plain kind words",
+        "Says it has seen nothing to check",
+        "Gives the shortest honest check, such as doing the main task once on a real phone and once with the keyboard",
+        "Does not lecture",
+        "Does not say works, tested or ready to ship"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "Does my form work?",
+      "Can you test my page?",
+      "How do I check this works on a phone?",
+      "Write test cases for these acceptance criteria",
+      "Is my page fast enough?"
+    ],
+    "should_not_trigger": [
+      "Is my form accessible to screen reader users?",
+      "Is my API key safe in my JavaScript file?",
+      "What's the MVP for my club website?",
+      "What's on the launch checklist?",
+      "Write friendlier error text for my form"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

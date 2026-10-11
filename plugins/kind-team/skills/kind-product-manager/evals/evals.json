@@ -1,0 +1,89 @@
+{
+  "skill": "kind-product-manager",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "portfolio-scope",
+      "prompt": "I'm a designer and I want to build a portfolio site with a blog, a shop for my prints, a newsletter and a case-study section. Which should I build first?",
+      "expect": [
+        "Opens with a recommendation, not a question",
+        "Introduces appetite (how much time it's worth) in plain words",
+        "Sorts features into must / could / not this time and names the parked items",
+        "Ends with exactly one next step",
+        "No more than three decisions offered",
+        "Asks at most one 'your turn' question, on a real decision such as who the site is for"
+      ]
+    },
+    {
+      "id": "acceptance-criteria",
+      "prompt": "Can you write the stories for a sign-up form for my app?",
+      "expect": [
+        "Opens with the outcome (drafted stories), not a question",
+        "Writes Given/When/Then criteria",
+        "Includes at least one unhappy path",
+        "Offers a decision or learned log line",
+        "Asks at most one 'your turn' question, about who the app is for"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Just tell me which feature to build first, I don't want a lesson. It's a recipe-sharing app for my family.",
+      "expect": [
+        "Gives a direct answer without nagging",
+        "Still states the reason in one line",
+        "Does not ask more than one question"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-product-manager skill. Hand-off pack. Ticket: review the acceptance criteria for a newsletter sign-up form. Files: the criteria are below. Don't touch: the form's code.\n\nCriteria: 1. Given I enter my email, when I press Sign up, then I'm subscribed. 2. Given the email is invalid, then I see an error.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-product-manager skill. Hand-off pack. Ticket: review the acceptance criteria for a newsletter sign-up form. Files: the criteria are below. Done means: every criterion is testable and there is at least one unhappy path. Don't touch: the form's code.\n\nCriteria: 1. Given I enter my email, when I press Sign up, then I'm subscribed. 2. Given the email is invalid, then I see an error.",
+      "expect": [
+        "Every finding has a severity from the four-step scale",
+        "Every finding is labelled checked, found by a tool, or my judgement",
+        "Reports against what done means: met, not met, or couldn't check",
+        "Doesn't propose changes to the form's code"
+      ]
+    },
+    {
+      "id": "log-correction",
+      "prompt": "Use the kind-product-manager skill. Here is my learning log entry: 'Decision, 3 Oct: I decided to build my site with Astro.' I actually chose Vite. Fix it.",
+      "expect": [
+        "Drafts a new entry that names the one it replaces",
+        "Doesn't delete or overwrite the old entry",
+        "Asks for approval before anything is changed"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "Help me decide what to build first for my side project",
+      "Write acceptance criteria for this feature: people can save a recipe to a favourites list",
+      "What's the MVP for a habit tracker?",
+      "I keep adding features and never finishing, help",
+      "Is this idea worth six weeks of my time? A booking app for a local dog groomer"
+    ],
+    "should_not_trigger": [
+      "Make a project plan with dates and risks for the launch",
+      "Write a detailed spec for the Stripe integration",
+      "Brainstorm ten ideas for a new app",
+      "Check this page for accessibility problems",
+      "Run my Friday retro"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "At most three decisions, each with what happens if they do nothing",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "skill": "kind-content-designer",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "Contact form for my pottery class newsletter. Please improve the wording.\n\nLabels: \"Nm\", \"Email addr\", \"Msg\"\nButton: \"Submit\"\nError if the email is wrong: \"Invalid input. You entered an incorrect email.\"\nError if the name is blank: \"ERROR 422: field cannot be null\"\nAfter sending: \"Your submission has been processed.\"\nTagline under the form: \"The most secure newsletter sign-up, guaranteed to never lose your details.\"",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Gives the rewritten text first, then at most three notes",
+        "Shows at most three findings in full and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Replaces 'Submit' with a button that says what happens",
+        "Rewrites the errors to say what went wrong and how to fix it, without blaming",
+        "Flags the 'most secure' and 'guaranteed' claim as unbacked instead of polishing it, and at least Fix before launch",
+        "Says what it did not check, such as how the words look on the page",
+        "Never says the wording is compliant, safe or will convert"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "Check the wording on my live page at https://example.invalid/pottery-signup and tell me what to fix.",
+      "expect": [
+        "Says in the first lines it can't open the link",
+        "Does not invent findings",
+        "Names what that leaves unchecked",
+        "Asks for the words to be pasted and gives a short check the person can do themselves"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-content-designer skill. Hand-off pack. Ticket: improve the wording on the recipe app save form.\nFiles: Button: \"Submit\". Error: \"Invalid input\". Confirmation: \"Operation successful\". Done means: the button says what happens, the error says what to fix, and the confirmation says what comes next. Don't touch: anything outside these three pieces of text.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check",
+        "Every finding has a severity and a label",
+        "Stays inside the pack"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-content-designer skill. Hand-off pack. Ticket: improve the wording on the recipe app save form.\nFiles: Button: \"Submit\". Error: \"Invalid input\". Confirmation: \"Operation successful\". Don't touch: anything outside these three pieces of text.",
+      "expect": [
+        "Does no review or rewriting yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-content-designer skill. Just tell me whether Submit or Send is better on a contact form. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer in the first line, which is Send, or better still a button that says what happens",
+        "States the reason in one line",
+        "Does not ask more than one question",
+        "Does not lecture"
+      ]
+    },
+    {
+      "id": "privacy-note-facts-given",
+      "prompt": "Write a privacy note for my pottery class sign-up form. The facts: the form collects name, email address and which class they want. It goes to me by email and into a spreadsheet only I can open. I keep it until the class ends, then delete it. Nothing is shared with anyone else. People can ask me to delete it by replying to any email from me.",
+      "expect": [
+        "Gives the privacy note text first, using only the facts supplied",
+        "Does not add anything the form collects or any promise the facts don't support",
+        "Covers what is collected, why, who sees it, how long it is kept, and how to ask for deletion",
+        "Labels the result not legal advice and says to check local rules",
+        "Treats the wording as at least Fix before launch if it flags anything",
+        "Says it did not check the form itself, only the facts given"
+      ]
+    },
+    {
+      "id": "privacy-note-facts-missing",
+      "prompt": "Write a short privacy note for my club sign-up form. I'm not sure what it collects, just make it sound reassuring.",
+      "expect": [
+        "Does not invent what the form collects",
+        "Asks for the missing facts (what is collected, where it goes, how long it is kept)",
+        "Does not write a reassuring note that promises things it can't back up",
+        "Keeps the reply short and mentions not legal advice"
+      ]
+    },
+    {
+      "id": "social-preview",
+      "prompt": "What should my link preview say? It's a one-page site for my pottery class: beginners welcome, Saturday mornings, six weeks, small groups, sign up by email.",
+      "expect": [
+        "Gives a title and a description first, as text to copy",
+        "Keeps them within rough length ranges and says the ranges are rules of thumb that platforms differ on",
+        "Says to check with the platform's own preview tool",
+        "Does not claim the preview will get more clicks",
+        "Does not add claims the person didn't give, such as prices or awards",
+        "Says what it did not check, such as the picture and how it looks"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "Write the error message for my sign-up form",
+      "Can you make this friendlier? It sounds cold: 'Your request was denied.'",
+      "What should this button say instead of Submit?",
+      "Rewrite my About paragraph, it's too long and stiff",
+      "What should my link preview say when I share my site?"
+    ],
+    "should_not_trigger": [
+      "What should I build first for my club website?",
+      "Can someone use my form with only a keyboard and a screen reader?",
+      "Is my contact form secure?",
+      "Does my form submit correctly on Safari and Firefox?",
+      "Give me a launch checklist for my site"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Never says compliant, safe, guaranteed or will convert",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Gives the rewritten text first",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}
