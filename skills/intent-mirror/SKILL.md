@@ -94,10 +94,15 @@ On a yes, say in one line which path you're taking, then go.
 
 ### Handoffs: plug in your own
 
-List your own destinations here so the mirror can name them: other skills, templates, document types or tools. Two examples:
+List your own destinations here so the mirror can name them: other skills, templates, document types or tools. Default ToolShed destinations:
 
 | Signal in confirmed intent | Hand off to |
 | --- | --- |
+| A new project, confusion or "just set me up" | `kind-chief-of-staff` (onboarding interview and 3-role starting crew) |
+| Deciding what to build, cut or scope | `kind-product-manager` (appetite and trade-offs) |
+| A photo, slide or screenshot to match | `design-system-from-notes` (mini design system) |
+| Statistics or numbers cited without a source | `claim-to-chart` (primary source tracing and chart) |
+| Event notes, recordings or slides | `learning-capture` (report, mind map and actions) |
 | A message or email to send | Draft it in the reply. The user sends it. |
 | A doc, plan or write-up to keep | Your doc template or writing skill |
 

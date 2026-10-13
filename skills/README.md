@@ -10,6 +10,9 @@ Each skill has its own folder with two files:
 | Skill | What it does |
 |---|---|
 | [intent-mirror](intent-mirror/) | Turns a messy brain dump into a short summary you check before the AI does anything |
+| [learning-capture](learning-capture/) | Turns photos, notes and recordings from an event into a report, a mind map and an action list |
+| [claim-to-chart](claim-to-chart/) | Checks where a statistic came from, then charts it with colours everyone can read |
+| [design-system-from-notes](design-system-from-notes/) | Takes the colours and fonts from one picture and reuses them so everything matches |
 
 Looking for the kind team? Those role skills are bundled as a plugin in [`plugins/kind-team`](../plugins/kind-team/).
 

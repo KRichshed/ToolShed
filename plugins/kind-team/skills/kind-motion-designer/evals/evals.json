@@ -1,0 +1,91 @@
+{
+  "skill": "kind-motion-designer",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "I'm building a roster page for our community garden. Can you check my animations and tell me what to change? Here is the CSS:\n\n.card { transition: all 0.9s; }\n.card:hover { transform: scale(1.1) rotate(2deg); }\n.claim-btn { animation: pulse 1s infinite; }\n@keyframes pulse { 0% { box-shadow: 0 0 0 0 gold; } 100% { box-shadow: 0 0 0 20px transparent; } }\n.panel { transition: height 0.6s; }\n.hero-slides { animation: slide 4s linear infinite; }\n\nThe hero slides move on their own and I have no pause button. I haven't added any reduced-motion rules. A little confetti pops when someone claims a shift, for fun.",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Gives a motion spec table first, then at most three findings in full, and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Asks what the pulse, the hover rotation and the confetti are for, and recommends cutting any with no job",
+        "Flags the infinite pulse and the self-moving hero slides as needing a way to stop, with at least Fix before launch",
+        "Flags the missing reduced-motion version for each moving thing",
+        "Recommends transform and opacity instead of animating height, and drops transition: all",
+        "Says what it did not check, such as how it runs on a real phone",
+        "Does not claim any frame rate and never calls the motion smooth, accessible or delightful"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "The animations on my garden roster site are janky on my phone. It's at https://example.invalid/garden-roster. Can you tell me what frame rate it runs at and fix it?",
+      "expect": [
+        "Says in the first lines it can't open the link or watch the page run",
+        "Does not invent findings or a frame rate",
+        "Names what that leaves unchecked",
+        "Asks for the animation code or a description of each moving thing",
+        "Gives a short check the person can do themselves, such as a performance recording in the browser's developer tools, and says to paste what it shows",
+        "Mentions the QA tester for performance budgets"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-motion-designer skill. Hand-off pack. Ticket: specify the motion for the 'shift claimed' tick on the community garden roster.\nFiles: When someone presses Claim, the button turns green and a tick draws itself over 700 ms with a bounce, then the whole row slides up 40 px and fades out over 1 second. Done means: a motion spec table row for each moving thing with its job, duration, easing and reduced-motion version; transform and opacity only; nothing loops. Don't touch: anything outside the material.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check",
+        "Gives a spec table row for each moving thing with a job, duration, easing and reduced-motion version",
+        "Every finding has a severity and a label",
+        "Questions the long durations and the bounce, with timings labelled as judgement",
+        "Stays inside the pack"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-motion-designer skill. Hand-off pack. Ticket: specify the motion for the 'shift claimed' tick on the community garden roster.\nFiles: When someone presses Claim, the button turns green and a tick draws itself over 700 ms with a bounce, then the whole row slides up 40 px and fades out over 1 second. Don't touch: anything outside the material.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-motion-designer skill. Just tell me whether I should make my family recipe site fade in when it loads. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer in the first line, which is probably not, unless the fade has a job",
+        "States the reason in one line, and may add that any fade needs a reduced-motion version",
+        "Does not ask more than one question",
+        "Does not lecture"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "Should my buttons animate when you press them?",
+      "How long should a menu take to slide open?",
+      "I have a spinning logo on my family recipe site and I'm worried it will bother people who get dizzy. What do I do?",
+      "Write me a motion spec for the way my garden roster cards fade in",
+      "My scroll animation is janky on my phone, what should I change?"
+    ],
+    "should_not_trigger": [
+      "Can someone use my site with only a keyboard and a screen reader?",
+      "Which screens does my sign-up flow need, and in what order?",
+      "Write the error message for my garden roster form",
+      "Does my form submit correctly on Safari and Firefox?",
+      "What should I build first for my club website?"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Never says accessible, compliant, safe, guaranteed or delightful, and never quotes a frame rate without a tool result",
+    "Every moving thing has a reduced-motion version",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

@@ -2,7 +2,7 @@
 
 **Patient role skills for people who are new to building with AI. Each role teaches as it helps, and you make every decision.**
 
-Version 0.1. Ten roles so far. A full guide, with install steps, is on the way.
+Version 0.1. Seventeen roles so far. A full guide, with install steps, is on the way.
 
 <details>
 <summary><b>New to this? Words you'll see on this page</b></summary>
@@ -27,6 +27,13 @@ Version 0.1. Ten roles so far. A full guide, with install steps, is on the way.
 | [kind-content-designer](skills/kind-content-designer/) | Makes the words clearer and kinder: labels, buttons, errors, short pages, a privacy note and link previews |
 | [kind-learning-log](skills/kind-learning-log/) | Turns what happened into learning log entries, corrects old ones without deleting them, and tidies your log |
 | [kind-setup-guide](skills/kind-setup-guide/) | Gets you from nothing to a safe first run with Claude and Claude Code, one step at a time |
+| [kind-ux-designer](skills/kind-ux-designer/) | Sketches flows, screens and states before visuals: journeys, edge cases and empty states |
+| [kind-motion-designer](skills/kind-motion-designer/) | Animation, transitions and frame timing: calm movement, reduced-motion modes and curves |
+| [kind-marketing-comms](skills/kind-marketing-comms/) | Honest positioning and claims: launch posts, clear promises and platform limits |
+| [kind-ui-designer](skills/kind-ui-designer/) | How it looks: colour palettes (60-30-10), typography scales, spacing grids, and component states |
+| [kind-mobile-designer](skills/kind-mobile-designer/) | Phones and small screens: touch targets, thumb zones, responsive reflow, and viewport quirks |
+| [kind-solution-architect](skills/kind-solution-architect/) | Diagrams and decision records: architectural boundaries, C4 models, and managing complexity |
+| [kind-archivist](skills/kind-archivist/) | Tidy files and changelogs: predictable names, Keep a Changelog updates, and deprecation stubs |
 
 ## How every role works
 
@@ -37,6 +44,16 @@ Every role follows the same set of house rules, called the kind contract. It's i
 - One next step, never a list of ten.
 - It suggests. You decide. It never publishes, sends or deletes anything without your yes.
 
+## Hand-offs and audit circuits
+
+Roles check each other's work using a standard [hand-off pack](templates/hand-off-pack.md). When one role finishes drafting, it recommends and pre-fills an audit pack for its reviewing counterpart:
+- **Design and UX:** `kind-ui-designer` hands off to `kind-accessibility-specialist` for contrast and `kind-mobile-designer` for small-screen tap targets.
+- **Architecture and code:** `kind-solution-architect` hands off to `kind-security-specialist` for threat modeling and `kind-red-team` for pre-mortems.
+- **Copy and claims:** `kind-marketing-comms` hands off to `claim-to-chart` for statistic verification and `kind-content-designer` for plain language.
+
+Each completed review or task also produces a clean, copy-pasteable ticket update note ready for GitHub issues or project boards.
+
 ## What's next
 
 Ideas, not promises: more roles, install steps for Claude and Claude Code, and test results.
+

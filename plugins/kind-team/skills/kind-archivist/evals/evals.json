@@ -1,0 +1,89 @@
+{
+  "skill": "kind-archivist",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "I am organising the repository for our neighbourhood toy library project and I want to tidy up the files before inviting other volunteers. Can you review our files and changelog, and is it ready to share?\n\nFiles in the project root:\n- README.md: Contains just '# Toy Library' and one sentence: 'Welcome to the project.'\n- Toy_Catalog_2024_old_DRAFT.md: Superseded list of toys from two years ago.\n- Toy_Catalog_v2_final (1).md: Current list of toys.\n- Meeting Notes 14-03-25.md: Notes from our committee meeting.\n- safety-guidelines.md: Toy safety inspection rules.\n- CHANGELOG.md:\n  # Changelog\n  v2 release: fixed bugs and updated toy list\n\nI was planning to permanently delete Toy_Catalog_2024_old_DRAFT.md so people don't get confused, and rename the v2 file to Toy_Catalog_final.md. What do you think?",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Shows at most three findings in full and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Says what it did not check",
+        "Recommends moving the old draft to an archive folder rather than permanently deleting it to preserve history",
+        "Flags filenames with spaces, parentheses, and version suffixes, recommending clean kebab-case slugs such as toy-catalogue.md",
+        "Recommends formatting CHANGELOG.md using Keep a Changelog categories (Added, Changed, Deprecated, Removed, Fixed, Security) with ISO 8601 dates",
+        "Advises expanding README.md to index active documents and guide new volunteers",
+        "Does not say the file structure is clean, compliant, safe, or that no links will break"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "Look at my GitHub repository at https://example.invalid/toy-library/docs and tell me which files are out of date and where to move them.",
+      "expect": [
+        "Says in the first lines what it can't do",
+        "Does not invent findings",
+        "Names what that leaves unchecked",
+        "Gives a short check the person can do themselves, such as listing all root files and checking whether each is indexed in README.md",
+        "Asks the person to paste the file list or directory tree and changelog contents"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-archivist skill. Hand-off pack. Ticket: organise the documentation folder for the tool library release.\nFiles: docs/README.md (lists only guide and catalogue), docs/borrowing_rules_2024_v1.md (superseded rules), docs/borrowing-rules.md (current active rules), and CHANGELOG.md (has only '2026 update: updated rules'). Done means: all filenames use clean kebab-case without version numbers, the old rules file has a deprecation notice and is moved to docs/archive/ with git history preserved, and CHANGELOG.md uses Keep a Changelog categories with ISO dates. Don't touch: the content of the active borrowing-rules.md or anything outside the docs/ folder and CHANGELOG.md.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check, for each part",
+        "Finds that docs/borrowing_rules_2024_v1.md uses snake_case, a year, and a version tag instead of a clean slug, that it lacks a deprecation notice and is not yet in docs/archive/, and that CHANGELOG.md lacks standard Keep a Changelog categories and ISO dates",
+        "Every finding has a severity and a label",
+        "Stays inside the pack and does not touch active borrowing rules content or outside files"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-archivist skill. Hand-off pack. Ticket: organise the documentation folder for the tool library release.\nFiles: docs/README.md, docs/borrowing_rules_2024_v1.md, docs/borrowing-rules.md, and CHANGELOG.md. Don't touch: anything outside the docs/ folder and CHANGELOG.md.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-archivist skill. Just tell me whether I should delete my superseded project specification file from last year now that the new one is live. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer in the first line, which is no, move it to an archive folder or preserve it in version control instead of deleting it",
+        "States the reason in one line, that deleting destroys the history and context of why earlier decisions were made and breaks any existing links",
+        "Does not ask more than one question",
+        "Does not lecture"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "Where should I put these old design notes so they don't clutter my project folder?",
+      "How do I write a clean changelog for our first version 1.0 release?",
+      "Can you help me clean up messy filenames with spaces and version numbers in my repo?",
+      "Should I delete this old draft or put an archive notice on it?",
+      "How do I make a table of contents or index in my README for all these docs?"
+    ],
+    "should_not_trigger": [
+      "Can you review the grammar, readability, and tone of my README introduction?",
+      "Can you design a database schema and API route structure for my project?",
+      "Are there any leaked API keys or security vulnerabilities in these config files?",
+      "Which features should we include in our next release roadmap?",
+      "Write automated unit tests to verify that our file upload service works"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Never says clean, compliant, safe, secure, guaranteed, or that no links will break",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Recommends preserving history and archiving over silent deletion",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

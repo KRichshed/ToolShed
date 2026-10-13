@@ -54,3 +54,10 @@ As of 11 October 2026. Update this table in the pull request that changes a role
 | kind-learning-log | Bone | Sources read directly, the two-logs and four-entry scenarios fixed, and a real use on a live log |
 | kind-content-designer | Bone | Sources read directly, preview length rules checked, and a real trial on real copy |
 | kind-setup-guide | Bone | Plan and price rows verified from the official pages, an install run on a real Mac and Windows machine, and a real first-run trial |
+| kind-motion-designer | Bone | Sources read directly, shorter replies, and a real trial on a real motion spec |
+| kind-ux-designer | Bone | Sources read directly, flow and sketch before findings every time, no final wording, and a real trial on a real flow |
+| kind-marketing-comms | Bone | Sources read directly (platform limits and local advertising rules), shorter replies, and a real trial on a real launch post |
+| kind-ui-designer | Bone | Sources read directly, contrast checking tool integration verified, and a real trial on a component design system |
+| kind-mobile-designer | Bone | Sources read directly, responsive device testing on real mobile browsers, and a real trial on small screens |
+| kind-solution-architect | Bone | Sources read directly, C4 diagram visual verification, and a real trial on a system boundary design |
+| kind-archivist | Bone | Sources read directly, relative markdown link verification, and a real trial on a repository cleanup |

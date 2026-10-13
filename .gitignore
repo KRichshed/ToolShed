@@ -15,3 +15,7 @@ secrets/
 # Python
 __pycache__/
 *.pyc
+
+# Local agent scratch & test output
+.agents/
+tools/kind-team/eval_output/

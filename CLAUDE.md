@@ -12,7 +12,7 @@ ToolShed is a public repo of tools for people building with AI. The kind team li
 6. **SKILL.md frontmatter uses only six fields:** name, description, license, compatibility, metadata, allowed-tools.
 7. **The kind contract is identical in every role.** Change it in one place, then run `python3 tools/kind-team/check_roles.py`.
 8. **Plain English and Australian spelling.** Name any new word once.
-9. **Tool-agnostic: no AI attribution.** No Co-Authored-By lines for AI tools, no "Generated with" footers and no session links, in commits, pull requests, issues or files. Claude pushes branches; Kimberly opens pull requests and issues herself, because the GitHub connection adds its own footer.
+9. **Tool-agnostic: no AI attribution.** No Co-Authored-By lines for AI tools, no "Generated with" footers and no session links, in commits, pull requests, issues or files.
 
 ## How she wants to work
 

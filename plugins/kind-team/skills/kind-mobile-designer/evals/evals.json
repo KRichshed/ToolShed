@@ -1,0 +1,84 @@
+{
+  "skill": "kind-mobile-designer",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "I built a mobile ordering page for our local coffee cart, but customers on phones are complaining that it's hard to use. Can you check my mobile layout and tell me if it works well on phones?\n\nLayout (made-up for mobile viewport 375px):\n- Fixed sticky top navigation bar (height: 70px) with logo and search.\n- Sticky bottom bar (height: 80px) with cart summary and 'Checkout' button.\n- Main content wrapper has style 'height: 100vh; overflow-y: scroll;'.\n- Coffee cup size selector: 'Small', 'Medium', 'Large' buttons each sized 26x26px, spaced 4px apart.\n- Text input for 'Delivery notes' has font-size: 13px.\n- Flavour syrup options only appear when hovering over an 'Add syrup' link.\n- Order summary price table has fixed width: 380px.",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Shows at most three findings in full and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Says what it did not check",
+        "Flags touch targets under 44x44px (the 26x26px size buttons) as Fix before launch or Blocker",
+        "Identifies the 100vh viewport bug and sticky bars eating vertical screen real estate",
+        "Flags the 13px font causing iOS auto-zoom and the hover-dependent syrup options as mobile defects",
+        "Does not say the design is easy, mobile-friendly, or guaranteed to work"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "Look at my prototype at https://example.invalid/coffeecart-mobile and tell me why buttons are hard to tap on an iPhone.",
+      "expect": [
+        "Says in the first lines what it can't do",
+        "Does not invent findings",
+        "Names what that leaves unchecked",
+        "Gives a short check the person can do themselves, such as testing one-handed on a physical phone, checking button sizes against 44x44px, and testing at 320px in browser responsive design mode"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-mobile-designer skill. Hand-off pack. Ticket: check mobile ergonomics for the coffee cart order screen.\nFiles: layout notes pasted below.\nDone means: touch targets meet at least 44x44px, no hover-dependent interactions, and layout fits 320px width without horizontal scrolling.\nDon't touch: anything outside the material, and no brand colours or copy.\n\nMaterial (made-up): 320px mobile layout. Main 'Place Order' button is 48x48px at the bottom. Size options are 30x30px buttons with 2px gap. Nutritional info appears only on hover. Content wrapper width is fixed at 360px.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check, for each criterion",
+        "Finds that size options are under 44x44px, hover is required for nutritional info, and fixed 360px width causes horizontal overflow at 320px",
+        "Every finding has a severity and a label",
+        "Stays inside the pack and does not touch brand colours or copy"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-mobile-designer skill. Hand-off pack. Ticket: check mobile ergonomics for the coffee cart order screen.\nFiles: layout notes for the 320px mobile layout. Don't touch: anything outside the material.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-mobile-designer skill. Just tell me whether using 100vh for a full-screen mobile container causes problems on phones. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer without nagging, stating yes",
+        "States the reason in one line, that mobile browser address bars and toolbars cover content because 100vh does not account for dynamic browser chrome (use 100dvh instead)",
+        "Does not ask more than one question"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "Can you check if my buttons are big enough to tap on a phone?",
+      "My website looks broken on an iPhone and scrolls sideways",
+      "How do I make my layout work comfortably for someone holding a phone with one hand?",
+      "Why does my page zoom in automatically whenever someone taps an input field?",
+      "The sticky header and bottom bar are covering all the content on small screens"
+    ],
+    "should_not_trigger": [
+      "What screens and steps should someone go through to sign up for an account?",
+      "Write the error message and confirmation text for our mobile checkout form",
+      "Can someone navigate this mobile menu using only a screen reader or keyboard?",
+      "How long should the drawer sliding animation take when opening the mobile menu?",
+      "What feature should we cut from the mobile version of our roadmap?"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

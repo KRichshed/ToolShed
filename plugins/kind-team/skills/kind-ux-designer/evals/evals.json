@@ -1,0 +1,94 @@
+{
+  "skill": "kind-ux-designer",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "I'm building a shift sign-up for our community garden and I want to know if the screens and steps are right. Here's my plan. Can you check the flow, and will volunteers find it easy?\n\nVolunteer shift sign-up for the Greenfield Community Garden (made-up). Phone first.\nScreens: 1 Home, 2 About the garden, 3 Pick a day, 4 Pick a shift, 5 Your details, 6 Review, 7 Thank you, 8 Volunteer profile, 9 Coordinator dashboard, 10 Settings.\nFlow: Home -> Pick a day -> Pick a shift -> Your details (name, email, phone, home address, date of birth) -> Review -> Thank you.\nIf a shift is full, the shift is greyed out and that is all.\nThe coordinator's list of volunteers has a Delete button next to each name. It deletes straight away.\nIf the email looks wrong the page reloads the Your details screen with the fields empty.\nThere is no Back button, people use the browser's.",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Gives a numbered flow and a plain-words or box sketch of the fewer screens first, then at most three findings",
+        "Shows at most three findings in full and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Suggests cutting or merging screens (for example Settings, Profile, Review) and says what was cut and why",
+        "Covers the unhappy paths and states: a full shift, an empty list, loading, and the error that wipes the form",
+        "Flags the Delete with no confirm or undo, and the missing way back, at least Fix before launch, with the delete as Blocker or Fix before launch",
+        "Questions whether home address and date of birth are needed, and passes what to collect to the product manager rather than deciding",
+        "Does not say volunteers will find it easy, says that needs real people trying it, and suggests three to five volunteers doing the main task",
+        "Does not pick colours, fonts or visual style",
+        "Labels judgement and checked-against-your-description findings honestly, and says what it did not check",
+        "Does not write the final words for messages, only says where they go"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "Look at my prototype at https://example.invalid/garden-prototype and tell me where volunteers will get lost.",
+      "expect": [
+        "Says in the first lines it can't open the link",
+        "Does not invent findings",
+        "Names what that leaves unchecked",
+        "Asks for the steps or a description of each screen, and gives a short check the person can do themselves, such as writing the main job as steps and asking of each screen what happens if it is empty, slow or fails",
+        "Does not say where volunteers will get lost"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-ux-designer skill. Hand-off pack. Ticket: check the flow for the garden tool-borrowing page.\nFiles to read: the flow pasted at the end of this message. Done means: the flow lists the happy path and at least two unhappy paths, every screen that shows a list has an empty state, and there is a way back from every step. Don't touch: anything outside the flow, and no colours or wording.\n\nFlow (made-up). Screens: 1 Tool list, 2 Tool details, 3 Borrow form, 4 Done. Happy path: Tool list -> Tool details -> Borrow form (name, return date) -> Done. If a tool is out, the Borrow button is hidden. Back button on the Borrow form only.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check, for each of the three parts",
+        "Finds that unhappy paths are not listed, that the Tool list has no empty state, and that only one step has a way back",
+        "Every finding has a severity and a label",
+        "Stays inside the pack and does not touch colours or wording",
+        "Does not say the flow is easy or will work"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-ux-designer skill. Hand-off pack. Ticket: check the flow for the garden tool-borrowing page.\nFiles to read: the flow pasted at the end of this message. Don't touch: anything outside the flow, and no colours or wording.\n\nFlow (made-up). Screens: 1 Tool list, 2 Tool details, 3 Borrow form, 4 Done. Happy path: Tool list -> Tool details -> Borrow form (name, return date) -> Done. If a tool is out, the Borrow button is hidden. Back button on the Borrow form only.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-ux-designer skill. Just tell me whether my volunteer sign-up needs a screen for when a shift is full. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer in the first line, which is yes, though it can be a state on the shift screen rather than a new screen",
+        "States the reason in one line, that otherwise people reach a dead end with nothing to do next",
+        "Does not ask more than one question",
+        "Does not lecture"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "What screens do I need for a sign-up sheet for our community garden?",
+      "How should the steps go when someone books a volunteer shift?",
+      "What happens on my page if there are no shifts yet or the internet drops?",
+      "Can you sketch a layout for my recipe site's home page using boxes and words, no colours?",
+      "My friends say my sign-up steps are confusing. Can you look at them?"
+    ],
+    "should_not_trigger": [
+      "What should I build first for my garden roster, and what can I cut?",
+      "Write the error message and the button text for my roster sign-up form",
+      "Does my roster form submit correctly on my phone and in Firefox?",
+      "Can someone use my roster with only a keyboard and a screen reader?",
+      "Which colours and fonts should I use for my garden site?"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Never says easy, intuitive, accessible, compliant, safe, guaranteed or will convert",
+    "Says an AI playing a user is rehearsal, not research, if it walks the flow as a pretend user",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Gives the flow and sketch before the findings",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

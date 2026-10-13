@@ -1,0 +1,92 @@
+{
+  "skill": "kind-solution-architect",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "I'm designing the system for a neighbourhood tool library (made-up project) where about 40 members borrow lawn mowers and drills. I want to make sure it's architected properly before building. Here is my architecture plan:\n- Frontend: Single page React app on Netlify.\n- Backend: 5 microservices running as AWS Lambda functions: Auth service, Inventory service, Borrowing service, Notification service, and Reporting service.\n- Data: Each microservice has its own DynamoDB table, but the Borrowing service directly queries and updates the Inventory table to lock tools during reservations.\n- External calls: When a member borrows a tool, the Borrowing service calls an external SMS provider API synchronously. If the SMS provider is down or slow, the borrowing request fails and rolls back.\n- There are no architecture decision records (ADRs) written yet.\nCan you review this architecture? Will it scale infinitely, and is it best practice?",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Draws a plain-words or Mermaid container diagram showing the boundaries and data flows",
+        "Shows at most three findings in full and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Flags the premature decomposition into 5 microservices for 40 members as at least Fix before launch, recommending a single monolith or simpler server",
+        "Flags the cross-service database access between Borrowing and Inventory as Blocker or Fix before launch",
+        "Flags the synchronous external SMS failure blocking the core borrowing flow as Blocker or Fix before launch, recommending an asynchronous queue or graceful degradation",
+        "Recommends drafting an Architecture Decision Record (ADR) for database and hosting choices",
+        "Says what it did not check",
+        "Does not say the architecture is infinitely scalable, production-ready, or best practice",
+        "Labels judgement and checked-against-your-description findings honestly"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "Take a look at our architecture diagram and live container cluster on AWS at https://aws.amazon.com/console/community-library and tell me if our VPC and subnets are properly partitioned.",
+      "expect": [
+        "Says in the first lines it can't open the link",
+        "Does not invent findings",
+        "Names what that leaves unchecked",
+        "Asks for a description of the containers, components, and network connections, or pasted configuration files",
+        "Gives a short check the person can do themselves, such as verifying whether database instances have public IP addresses or whether services can communicate inside a private subnet"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-solution-architect skill. Hand-off pack. Ticket: review the architecture boundaries for the local tool library booking system.\nFiles: Architecture overview (made-up): Single monolithic Node.js backend hosted on a virtual server, PostgreSQL database, React static frontend on a CDN. Payment processing calls an external Stripe API synchronously during checkout; if Stripe times out, the booking is saved with status 'pending_payment' and a background worker retries confirmation. Decisions are written in docs/adr/0001-monolith-postgres.md.\nDone means: system boundaries and containers are identified, external failure points are handled with fallbacks, and decisions are recorded in an ADR.\nDon't touch: code implementation or database schema column types.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check, for each of the three parts",
+        "Finds that boundaries and containers are identified, external failure has a fallback, and decisions are recorded in an ADR",
+        "Every finding has a severity and a label",
+        "Stays inside the pack and does not touch code or schema column types",
+        "Does not say the architecture is infinitely scalable, guaranteed, or best practice"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-solution-architect skill. Hand-off pack. Ticket: review the architecture boundaries for the local tool library booking system.\nFiles: Architecture overview (made-up): Single monolithic Node.js backend on a virtual server, PostgreSQL database, React static frontend on a CDN.\nDon't touch: code implementation or database schema column types.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-solution-architect skill. Just tell me whether I should use microservices for an internal tool used by five staff members. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer in the first line, which is no",
+        "States the reason in one line, explaining that a single monolith or simple server avoids the operational overhead and network failure modes of distributed microservices",
+        "Does not ask more than one question",
+        "Does not lecture"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "Where should I host my web app and database?",
+      "Should I build a monolith or use serverless functions for my new project?",
+      "Can you draw a system diagram showing how my frontend, backend, and database connect?",
+      "How do I trace the data flow and handle external API failures between these services?",
+      "Help me write an Architecture Decision Record (ADR) comparing PostgreSQL and DynamoDB"
+    ],
+    "should_not_trigger": [
+      "Write the SQL migrations and table column types for my user database",
+      "How do I install Node.js and Docker on my local laptop?",
+      "Can you run a penetration test to find SQL injection vulnerabilities in my API?",
+      "What user flows and screens should I design for the checkout process?",
+      "Which features should we cut from our MVP to launch next month?"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Never says infinitely scalable, future-proof, production-ready, safe, compliant, or best practice",
+    "Gives the system diagram or boundary map before the findings",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "skill": "kind-ui-designer",
+  "version": "0.1.0",
+  "scenarios": [
+    {
+      "id": "main-review",
+      "prompt": "I designed a card for our community tool library and I want to know if the colours and typography look right. Here is my styling. Can you check my UI, and will users think it looks clean?\n\nTool card styling for Greenfield Library (made-up):\nCard background: #FFFFFF\nCard border: none\nCard padding: 13px top, 7px left, 21px right, 9px bottom\nHeader text: #94A3B8, font-size: 20px, line-height: 1.05, font-weight: 700\nBody text: #A3A3A3, font-size: 15px, line-height: 1.15\nCategory pill: background #2563EB, text #FFFFFF, font-size: 14px, margin-bottom: 5px\nBorrow button: background #2563EB, text #FFFFFF, font-size: 16px, padding: 9px 15px. Outline set to none so the browser ring doesn't show. No hover or active states set up.\nDisabled state: button opacity 0.4 with text changed to #CCCCCC.\nDark mode plan: invert background to #000000 and body text to #FFFFFF.",
+      "expect": [
+        "Opens with the outcome, not a question",
+        "Shows at most three findings in full and parks the rest, each with a severity",
+        "Every finding has a severity and a label",
+        "Each finding has a fix in plain words",
+        "Says what it did not check",
+        "Flags the body text contrast (#A3A3A3 on #FFFFFF is ~2.5:1) as a Blocker or Fix before launch, and recommends at least 4.5:1",
+        "Flags removing the focus indicator with outline: none and no replacement as a Blocker",
+        "Flags arbitrary off-grid padding (13px, 7px, 21px, 9px) and recommends snapping to a 4px or 8px grid",
+        "Recommends against pure #000000 background in dark mode and suggests dark slate or grey to avoid harsh glare",
+        "Does not say the design is clean, beautiful, modern, or accessible"
+      ]
+    },
+    {
+      "id": "cannot-access",
+      "prompt": "Take a look at my UI in Figma at https://example.invalid/garden-ui-mockup and tell me if my colours and visual hierarchy look good.",
+      "expect": [
+        "Says in the first lines what it can't do",
+        "Does not invent findings",
+        "Names what that leaves unchecked",
+        "Gives a short check the person can do themselves, such as checking text contrast with a free contrast tool and checking if spacings use an 8px grid"
+      ]
+    },
+    {
+      "id": "hand-off-pack-complete",
+      "prompt": "Use the kind-ui-designer skill. Hand-off pack. Ticket: Review the colour contrast and spacing for the volunteer roster card.\nFiles: Specs pasted below. Done means: body text contrast meets at least 4.5:1, button contrast meets at least 4.5:1, and all margins and paddings snap to an 8px grid. Don't touch: the copy text or user flow.\n\nSpecs (made-up):\nCard background: #FFFFFF\nCard padding: 16px\nHeading: #0F172A on #FFFFFF, margin-bottom: 8px\nBody text: #94A3B8 on #FFFFFF, margin-bottom: 12px\nButton: #16A34A background with #FFFFFF text, margin-top: 16px, padding: 12px 24px.",
+      "expect": [
+        "Reports against what done means: met, not met, or couldn't check, for each item",
+        "Finds that body text contrast (#94A3B8 on #FFFFFF is ~2.7:1) does not meet 4.5:1, and 12px margin is off the 8px grid",
+        "Every finding has a severity and a label",
+        "Stays inside the pack and does not touch copy or flow"
+      ]
+    },
+    {
+      "id": "hand-off-pack-missing-done",
+      "prompt": "Use the kind-ui-designer skill. Hand-off pack. Ticket: Review the button styles for our checkout form.\nFiles: Button specs pasted below. Don't touch: anything outside the button styles.\n\nSpecs (made-up):\nPrimary button: background #10B981, text #FFFFFF, font-size: 16px, border-radius: 6px.\nSecondary button: background #F3F4F6, text #4B5563, font-size: 16px.",
+      "expect": [
+        "Does no review yet",
+        "Replies with a short request for 'what done means' and nothing else"
+      ]
+    },
+    {
+      "id": "just-tell-me",
+      "prompt": "Use the kind-ui-designer skill. Just tell me whether I should use pure black #000000 as my dark mode background. I don't want a lesson.",
+      "expect": [
+        "Gives a direct answer in the first line advising against pure #000000 in favour of a dark grey or slate",
+        "States the reason in one line, explaining that pure black causes high-contrast glare, halation, and prevents surface elevation shadows",
+        "Does not ask more than one question",
+        "Does not lecture"
+      ]
+    }
+  ],
+  "triggers": {
+    "should_trigger": [
+      "What font size and line height should I use for my headings and paragraphs?",
+      "Can you pick a 60-30-10 colour palette for my community garden website?",
+      "Why does my pricing card look messy and cluttered?",
+      "How do I style hover, focus, and disabled states for my buttons?",
+      "Help me set up dark mode colours that don't look harsh"
+    ],
+    "should_not_trigger": [
+      "What screens do I need for my user sign-up flow?",
+      "Rewrite the error messages and button labels for my checkout card",
+      "Can someone use my page with only a keyboard and screen reader?",
+      "How should this button animate when clicked?",
+      "Does my form submit properly on Safari and Firefox?"
+    ]
+  },
+  "teaching_checks": [
+    "Opens with the outcome, not a question",
+    "Asks a 'your turn' question only on a real decision, and at most one",
+    "Has a one-line why",
+    "Every finding has a severity and a label",
+    "Says what it did not check",
+    "At most three findings shown, the rest parked with a severity",
+    "Ends with one next step",
+    "Offers a learning-log line"
+  ]
+}
