@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="100%" height="auto" role="img" aria-labelledby="title desc">
+  <title id="title">Learning Capture Knowledge Map: Talk Themes and Action Hierarchy</title>
+  <desc id="desc">Visual preview of a synthesised event knowledge map with themes, takeaways, and prioritised actions</desc>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Gloock&amp;family=JetBrains+Mono:wght@400;500&amp;family=Cedarville+Cursive&amp;display=swap');
+      text { font-family: "Bricolage Grotesque", system-ui, -apple-system, sans-serif; }
+      .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+      .serif { font-family: "Gloock", Georgia, serif; }
+      .hand { font-family: "Cedarville Cursive", cursive; }
+    </style>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="520" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+
+  <!-- Card Outer Frame -->
+  <rect x="24" y="24" width="752" height="472" fill="none" stroke="#1C1D38" stroke-width="2"/>
+
+  <!-- Header Section -->
+  <text x="48" y="58" font-size="13" font-weight="600" letter-spacing="2" fill="#1C1D38" text-transform="uppercase">LEARNING CAPTURE · WORKED EXAMPLE</text>
+  <text x="48" y="92" font-size="28" font-weight="800" fill="#1C1D38" letter-spacing="-0.5">Talk Map: Systems That Teach</text>
+  <text x="48" y="118" font-size="14" font-weight="400" fill="#1C1D38">EXAMPLE: Sample talk notes grouped into themes and prioritised actions (made-up demo)</text>
+
+  <!-- Connective Arrows Behind Blocks -->
+  <path d="M 248 240 L 280 190" fill="none" stroke="#1C1D38" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 248 280 L 280 330" fill="none" stroke="#1C1D38" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 520 190 L 550 200" fill="none" stroke="#1C1D38" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 520 330 L 550 265" fill="none" stroke="#1C1D38" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- NODE 1: Core Theme Hub (Focal Node with Pool #52CFDE 12px Offset) -->
+  <rect x="60" y="207" width="195" height="135" fill="#848499"/>
+  <rect x="48" y="195" width="195" height="135" fill="#52CFDE" stroke="#1C1D38" stroke-width="2"/>
+  <text x="64" y="222" font-size="11" font-weight="700" letter-spacing="1.5" fill="#1C1D38" text-transform="uppercase">CENTRAL TOPIC</text>
+  <text x="64" y="252" font-size="20" font-weight="800" fill="#1C1D38">Systems That</text>
+  <text x="64" y="276" font-size="20" font-weight="800" fill="#1C1D38">Teach</text>
+  <text x="64" y="308" font-size="12" font-weight="600" fill="#1C1D38">Keynote summary</text>
+
+  <!-- NODE 2: Theme A Card (12px Fog Offset) -->
+  <rect x="292" y="147" width="235" height="110" fill="#848499"/>
+  <rect x="280" y="135" width="235" height="110" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+  <text x="296" y="158" font-size="13" font-weight="800" fill="#1C1D38">1. Working Memory</text>
+  <text x="296" y="180" class="serif" font-size="13" fill="#1C1D38">“Working memory is scarce.”</text>
+  <text x="296" y="202" font-size="12" font-weight="600" fill="#1C1D38">Takeaway:</text>
+  <text x="296" y="220" font-size="12" font-weight="400" fill="#1C1D38">Keep steps ≤ 7, choices ≤ 3.</text>
+
+  <!-- NODE 3: Theme B Card (12px Fog Offset) -->
+  <rect x="292" y="282" width="235" height="110" fill="#848499"/>
+  <rect x="280" y="270" width="235" height="110" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+  <text x="296" y="293" font-size="13" font-weight="800" fill="#1C1D38">2. Transparent Gates</text>
+  <text x="296" y="315" class="serif" font-size="13" fill="#1C1D38">“Suggests, never acts alone.”</text>
+  <text x="296" y="337" font-size="12" font-weight="600" fill="#1C1D38">Takeaway:</text>
+  <text x="296" y="355" font-size="12" font-weight="400" fill="#1C1D38">Pause before any commit.</text>
+
+  <!-- NODE 4: Action Hierarchy Card (Outcome Card with 12px Fog Offset) -->
+  <rect x="562" y="147" width="190" height="245" fill="#848499"/>
+  <rect x="550" y="135" width="190" height="245" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+  <text x="566" y="158" font-size="13" font-weight="800" fill="#1C1D38">Action Hierarchy</text>
+
+  <!-- Action Item 1: Lime Outcome Box (✓ Done/Next) -->
+  <rect x="562" y="172" width="166" height="58" fill="#D2EE63" stroke="#1C1D38" stroke-width="1.5"/>
+  <text x="572" y="192" font-size="12" font-weight="800" fill="#1C1D38">✓ Action 1 (Next)</text>
+  <text x="572" y="212" font-size="11" font-weight="500" fill="#1C1D38">Audit form error texts</text>
+
+  <!-- Action Item 2: Paper Box with Persimmon Dot (● Later) -->
+  <rect x="562" y="240" width="166" height="52" fill="#FBF7EC" stroke="#1C1D38" stroke-width="1.5"/>
+  <text x="572" y="260" font-size="12" font-weight="700" fill="#1C1D38">● Action 2 (Later)</text>
+  <text x="572" y="278" font-size="11" font-weight="400" fill="#1C1D38">Add plain words glossary</text>
+
+  <!-- Action Item 3: Paper Box with Berry Cross (× Parked) -->
+  <rect x="562" y="302" width="166" height="52" fill="#FBF7EC" stroke="#1C1D38" stroke-width="1.5"/>
+  <text x="572" y="322" font-size="12" font-weight="700" fill="#9E0147">× Parked idea</text>
+  <text x="572" y="340" font-size="11" font-weight="400" fill="#1C1D38">Large CMS migration</text>
+<!-- Footer Stamp -->
+  <text x="748" y="474" class="mono" font-size="12" font-weight="500" fill="#1C1D38" text-anchor="end">richshed.com</text>
+</svg>

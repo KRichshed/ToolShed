@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="100%" height="auto" role="img" aria-labelledby="title desc">
+  <title id="title">Design System Specimen Tile: Extracted Palette and Typography</title>
+  <desc id="desc">Visual preview of an extracted design system specimen tile with colour swatches and typography</desc>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Gloock&amp;family=JetBrains+Mono:wght@400;500&amp;family=Cedarville+Cursive&amp;display=swap');
+      text { font-family: "Bricolage Grotesque", system-ui, -apple-system, sans-serif; }
+      .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+      .serif { font-family: "Gloock", Georgia, serif; }
+      .hand { font-family: "Cedarville Cursive", cursive; }
+    </style>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="520" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+
+  <!-- Card Outer Frame -->
+  <rect x="24" y="24" width="752" height="472" fill="none" stroke="#1C1D38" stroke-width="2"/>
+
+  <!-- Header Section -->
+  <text x="48" y="58" font-size="13" font-weight="600" letter-spacing="2" fill="#1C1D38" text-transform="uppercase">DESIGN SYSTEM FROM NOTES · WORKED EXAMPLE</text>
+  <text x="48" y="92" font-size="28" font-weight="800" fill="#1C1D38" letter-spacing="-0.5">Extracted Brand Tokens &amp; Specimen</text>
+  <text x="48" y="118" font-size="14" font-weight="400" fill="#1C1D38">EXAMPLE: Sample notes extraction · 4 colour tokens with measured contrast (made-up demo)</text>
+
+  <!-- LEFT: 4 Palette Swatch Cards (Square Corners, 12px Fog Offset) -->
+  <!-- Swatch 1: Pool #52CFDE -->
+  <rect x="60" y="147" width="310" height="62" fill="#848499"/>
+  <rect x="48" y="135" width="310" height="62" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+  <rect x="58" y="145" width="42" height="42" fill="#52CFDE" stroke="#1C1D38" stroke-width="1.5"/>
+  <text x="112" y="163" font-size="15" font-weight="800" fill="#1C1D38">pool · #52CFDE</text>
+  <text x="112" y="182" class="mono" font-size="12" fill="#1C1D38">8.8:1 on indigo · ✓ Measured</text>
+
+  <!-- Swatch 2: Lime #D2EE63 -->
+  <rect x="60" y="223" width="310" height="62" fill="#848499"/>
+  <rect x="48" y="211" width="310" height="62" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+  <rect x="58" y="221" width="42" height="42" fill="#D2EE63" stroke="#1C1D38" stroke-width="1.5"/>
+  <text x="112" y="239" font-size="15" font-weight="800" fill="#1C1D38">lime · #D2EE63</text>
+  <text x="112" y="258" class="mono" font-size="12" fill="#1C1D38">12.6:1 on indigo · ✓ Measured</text>
+
+  <!-- Swatch 3: Persimmon #FF8F5E -->
+  <rect x="60" y="299" width="310" height="62" fill="#848499"/>
+  <rect x="48" y="287" width="310" height="62" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+  <rect x="58" y="297" width="42" height="42" fill="#FF8F5E" stroke="#1C1D38" stroke-width="1.5"/>
+  <text x="112" y="315" font-size="15" font-weight="800" fill="#1C1D38">persimmon · #FF8F5E</text>
+  <text x="112" y="334" class="mono" font-size="12" fill="#1C1D38">2.1:1 on paper · ● Estimated</text>
+
+  <!-- Swatch 4: Berry #9E0147 -->
+  <rect x="60" y="375" width="310" height="62" fill="#848499"/>
+  <rect x="48" y="363" width="310" height="62" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+  <rect x="58" y="373" width="42" height="42" fill="#9E0147" stroke="#1C1D38" stroke-width="1.5"/>
+  <text x="112" y="391" font-size="15" font-weight="800" fill="#1C1D38">berry · #9E0147</text>
+  <text x="112" y="410" class="mono" font-size="12" fill="#1C1D38">7.6:1 on paper · × Stop rule</text>
+
+  <!-- RIGHT: Typography & Specimen Box (Focal Card with Pool #52CFDE 12px Offset) -->
+  <rect x="407" y="147" width="345" height="290" fill="#52CFDE"/>
+  <rect x="395" y="135" width="345" height="290" fill="#FBF7EC" stroke="#1C1D38" stroke-width="2"/>
+
+  <!-- Specimen Content -->
+  <text x="415" y="162" font-size="11" font-weight="700" letter-spacing="2" fill="#1C1D38" text-transform="uppercase">TYPE PAIRING &amp; COMPONENT SPECIMEN</text>
+  <text x="415" y="198" class="serif" font-size="26" fill="#1C1D38">“Design is honesty.”</text>
+  <text x="415" y="226" font-size="13" font-weight="700" fill="#1C1D38">Display: Gloock 400 · Body: Bricolage 800</text>
+  <text x="415" y="246" font-size="12" font-weight="400" fill="#1C1D38">All corners square (radius: 0) · 12px print offsets</text>
+
+  <!-- Embedded Token Code Snippet in Indigo Box -->
+  <rect x="415" y="268" width="305" height="46" fill="#1C1D38"/>
+  <text x="427" y="287" class="mono" font-size="12" fill="#FBF7EC">tokens.color.ground = &quot;#FBF7EC&quot;;</text>
+  <text x="427" y="303" class="mono" font-size="12" fill="#52CFDE">tokens.radius.none = 0;</text>
+
+  <!-- Button & 7:1 Contrast Badge Preview (contrast status check) -->
+  <rect x="423" y="342" width="136" height="34" fill="#848499"/>
+  <rect x="415" y="334" width="136" height="34" fill="#D2EE63" stroke="#1C1D38" stroke-width="2"/>
+  <text x="483" y="356" font-size="13" font-weight="700" fill="#1C1D38" text-anchor="middle">✓ Done Button</text>
+
+  <rect x="580" y="334" width="140" height="34" fill="#FBF7EC" stroke="#1C1D38" stroke-width="1.5"/>
+  <text x="650" y="356" class="mono" font-size="12" font-weight="700" fill="#1C1D38" text-anchor="middle">✓ Passes 7:1</text>
+<!-- Footer Stamp -->
+  <text x="748" y="474" class="mono" font-size="12" font-weight="500" fill="#1C1D38" text-anchor="end">richshed.com</text>
+</svg>
